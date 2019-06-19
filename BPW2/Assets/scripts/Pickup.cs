@@ -6,25 +6,31 @@ public class Pickup : MonoBehaviour
 {
     public float RespawnTime = 2f;
     public Food_Type foodType;
-    // Update is called once per frame
-    void Update()
+    private SpriteRenderer TheSprite;
+    private PolygonCollider2D TheCollider;
+
+    private void Start()
     {
-        //if (player picks up pickup){
-        //    gameObject.SetActive = false;
-            
+        TheSprite = gameObject.GetComponent <SpriteRenderer>();
+        TheCollider = gameObject.GetComponent<PolygonCollider2D>();
+    }
+       
 
-        //}
-
-        
+    public void PickedUp()
+    {
+        TheSprite.enabled = false;
+        TheCollider.enabled = false;
+        StartCoroutine ("RespawnFood");
     }
 
-    //IEnumerator PickUp()
-    //{
-    //    yield return new WaitForSeconds(RespawnTime);
-    //    gameObject.SetActive = true;
-    //    return null;
-    //}
-                
+    IEnumerator RespawnFood()
+    {
+        yield return new WaitForSeconds(RespawnTime);
+        TheSprite.enabled = true;
+        TheCollider.enabled = true;
+        yield return null;
+    }
+
 }
 public enum Food_Type
 {
