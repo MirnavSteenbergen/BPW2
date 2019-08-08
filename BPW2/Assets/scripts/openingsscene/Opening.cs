@@ -79,7 +79,9 @@ public class Opening : MonoBehaviour
 
         else if (TextNr == 9)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
+
+    
 }

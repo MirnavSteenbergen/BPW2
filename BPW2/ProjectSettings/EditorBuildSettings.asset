@@ -9,9 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Hoofdmenu.unity
+    guid: dc12dc3fa9d5ebc449ed489bdf75e18d
+  - enabled: 1
     path: Assets/Scenes/openingscene.unity
     guid: e18cb105593a1cc42a6ef5cf2dfebd8f
   - enabled: 1
     path: Assets/Scenes/level 1.unity
     guid: 3730999221ef25a41accbc12037dadd5
+  - enabled: 1
+    path: Assets/Scenes/GelijkspelEinde.unity
+    guid: f86397b2bbc01b24ea8bd97092db5509
+  - enabled: 1
+    path: Assets/Scenes/WinPlayer1.unity
+    guid: b2c211058d28ce54dac2d7ac66efe1b6
+  - enabled: 1
+    path: Assets/Scenes/WinPlayer2.unity
+    guid: f79c66075100b5943bf6fac5ff6ba536
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: b2714bd9c4cf7c24dac17b3057b5794d
   m_configObjects: {}

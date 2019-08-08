@@ -11,6 +11,10 @@ public class timer : MonoBehaviour
     public float CurrentTime;
     public float speed = 1;
 
+    public int Gelijkspel;
+    public int WinPlayer1;
+    public int WinPlayer2;
+
     private void Start()
     {
         CurrentTime = StartTime;
@@ -28,7 +32,7 @@ public class timer : MonoBehaviour
         }
         else uiTime.text = "00:00";
 
-        if (CurrentTime <= 0)
+        if (CurrentTime <= 0.01)
         {
             endgame();
         }
@@ -37,8 +41,18 @@ public class timer : MonoBehaviour
     void endgame()
     {
         Debug.Log("endgame triggered");
+        if (GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController1>().Score == GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController1>().Score)
+        {
+            SceneManager.LoadScene(Gelijkspel);
+        }
+        else if (GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController1>().Score > GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController1>().Score)
+        {
+            SceneManager.LoadScene(WinPlayer1);
+        }
+        else if (GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController1>().Score < GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController1>().Score)
+        {
+            SceneManager.LoadScene(WinPlayer2);
+        }
 
-        //enable endui met eindscores spelers
-        //next scene/level
     }
 }

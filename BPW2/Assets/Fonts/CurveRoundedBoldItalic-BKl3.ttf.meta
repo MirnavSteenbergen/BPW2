@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: a317dc2d0c65dcd4080eb4a4a07e191f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: CURVE Rounded
+  fontNames:
+  - CURVE Rounded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 883805837f5a7f94e83aa1ff276926c5, type: 3}
+  - {fileID: 12800000, guid: 0efc8ebf0fe02d0499515bc792fa2827, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

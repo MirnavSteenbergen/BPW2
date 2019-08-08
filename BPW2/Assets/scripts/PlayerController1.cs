@@ -13,27 +13,15 @@ public class PlayerController1 : MonoBehaviour
     private bool deliveryattempt;
     private Pickup pickUp;
     public int PlayerNumber;
-
-    //eerste inventory systeem
     public Text scoreTotal;
-    public Text ScoreVlees;
-    public Text ScoreVis;
-    public Text ScoreKruidjes;
-    public Text ScorePeper;
-    public Text ScoreGroente;
-
-    private int Score;
-    private int AantVlees;
-    private int AantVis;
-    private int AantKruidjes;
-    private int AantPeper;
-    private int AantGroente;
+    public int Score;
 
     //tweede inventory systeem
     public int ItemInInventorySlot1;
     public int ItemInInventorySlot2;
     public int ItemInInventorySlot3;
 
+    private bool AttemptToTrash;
     private bool InventorySlotIsFilled1;
     private bool InventorySlotIsFilled2;
     private bool InventorySlotIsFilled3;
@@ -61,19 +49,10 @@ public class PlayerController1 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        AantVlees = 0;
-        AantVis = 0;
-        AantKruidjes = 0;
-        AantPeper = 0;
-        AantGroente = 0;
+        
         Score = 0;
-
         scoreTotal.text = "Score: " + Score.ToString();
-        ScoreVlees.text = AantVlees.ToString();
-        ScoreVis.text = AantVis.ToString();
-        ScoreKruidjes.text = AantKruidjes.ToString();
-        ScorePeper.text = AantPeper.ToString();
-        ScoreGroente.text = AantGroente.ToString();
+        
     }
 
     // Update is called once per frame
@@ -110,8 +89,7 @@ public class PlayerController1 : MonoBehaviour
 
             if (foodType == Food_Type.Vlees)
             {
-                AantVlees += 1;
-                ScoreVlees.text = AantVlees.ToString();
+                
                 if (InventorySlotIsFilled1 == false)
                 {
                     InventorySlotIsFilled1 = true;
@@ -135,8 +113,7 @@ public class PlayerController1 : MonoBehaviour
 
             else if (foodType == Food_Type.Vis)
             {
-                AantVis += 1;
-                ScoreVis.text = AantVis.ToString();
+                
                 if (InventorySlotIsFilled1 == false)
                 {
                     InventorySlotIsFilled1 = true;
@@ -160,8 +137,7 @@ public class PlayerController1 : MonoBehaviour
 
             else if (foodType == Food_Type.Kruidjes)
             {
-                AantKruidjes += 1;
-                ScoreKruidjes.text = AantKruidjes.ToString();
+                
                 if (InventorySlotIsFilled1 == false)
                 {
                     InventorySlotIsFilled1 = true;
@@ -185,8 +161,7 @@ public class PlayerController1 : MonoBehaviour
 
             else if (foodType == Food_Type.Peper)
             {
-                AantPeper += 1;
-                ScorePeper.text = AantPeper.ToString();
+                
                 if (InventorySlotIsFilled1 == false)
                 {
                     InventorySlotIsFilled1 = true;
@@ -210,8 +185,7 @@ public class PlayerController1 : MonoBehaviour
 
             else if (foodType == Food_Type.Groente)
             {
-                AantGroente += 1;
-                ScoreGroente.text = AantGroente.ToString();
+               
                 if (InventorySlotIsFilled1 == false)
                 {
                     InventorySlotIsFilled1 = true;
@@ -234,6 +208,13 @@ public class PlayerController1 : MonoBehaviour
             }
 
 
+        }
+
+        if (Input.GetKeyDown(interactionKey) && AttemptToTrash == true)
+        {
+            ResetInventorySlot1();
+            ResetInventorySlot2();
+            ResetInventorySlot3();
         }
 
         if (Input.GetKeyDown(interactionKey) && deliveryattempt == true && PlayerNumber == 1)
@@ -274,7 +255,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
-                GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest();
+                GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().NewQuest();
             }
             else if (ItemInInventorySlot2 == GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().Questnumber)
             {
@@ -282,7 +263,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
-                GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest();
+                GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().NewQuest();
             }
             else if (ItemInInventorySlot3 == GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().Questnumber)
             {
@@ -290,7 +271,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
-                GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest();
+                GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().NewQuest();
             }
         }
 
@@ -317,12 +298,19 @@ public class PlayerController1 : MonoBehaviour
             standingOnPickup = true;
             pickUp = other.gameObject.GetComponent<Pickup>();
         }
+
+        if (other.gameObject.tag == "Afvalbak")
+        {
+            AttemptToTrash = true;
+            Debug.Log("trash attempted");
+        }
     }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
             standingOnPickup = false;
             deliveryattempt = false;
+            AttemptToTrash = false;
         }
 
         private void ResetInventorySlot1()

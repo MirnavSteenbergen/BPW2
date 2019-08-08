@@ -7,6 +7,9 @@ TagManager:
   - PickUp
   - Delivery
   - Delivery1
+  - Player1
+  - Player2
+  - Afvalbak
   layers:
   - Default
   - TransparentFX
