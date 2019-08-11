@@ -44,10 +44,18 @@ public class PlayerController1 : MonoBehaviour
     public GameObject InventorySlot34;
     public GameObject InventorySlot35;
 
+    //Pick-up sound
+    public AudioClip PickUp;
+    public AudioSource PlayerAudio;
+    public AudioSource CorrectObjectGiven;
+
+    //walk animation
+    public Animator walkAnim;
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerAudio.clip = PickUp;
         rb = GetComponent<Rigidbody2D>();
         
         Score = 0;
@@ -58,6 +66,16 @@ public class PlayerController1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //walk animation
+        if(Input.GetKey(rightKey) || Input.GetKey(leftKey) || Input.GetKey(downKey) || Input.GetKey(upKey))
+        {
+            walkAnim.SetBool("Moving", true);
+        }
+        else
+        {
+            walkAnim.SetBool("Moving", false);
+        }
+
         //player movement
         if (Input.GetKey(upKey))
         {
@@ -95,19 +113,21 @@ public class PlayerController1 : MonoBehaviour
                     InventorySlotIsFilled1 = true;
                     ItemInInventorySlot1 = 1;
                     InventorySlot11.gameObject.SetActive(true);
-
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled2 == false)
                 {
                     InventorySlotIsFilled2 = true;
                     ItemInInventorySlot2 = 1;
                     InventorySlot21.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled3 == false)
                 {
                     InventorySlotIsFilled3 = true;
                     ItemInInventorySlot3 = 1;
                     InventorySlot31.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
             }
 
@@ -119,6 +139,7 @@ public class PlayerController1 : MonoBehaviour
                     InventorySlotIsFilled1 = true;
                     ItemInInventorySlot1 = 4;
                     InventorySlot14.gameObject.SetActive(true);
+                    PlayerAudio.Play();
 
                 }
                 else if (InventorySlotIsFilled2 == false)
@@ -126,12 +147,14 @@ public class PlayerController1 : MonoBehaviour
                     InventorySlotIsFilled2 = true;
                     ItemInInventorySlot2 = 4;
                     InventorySlot24.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled3 == false)
                 {
                     InventorySlotIsFilled3 = true;
                     ItemInInventorySlot3 = 4;
                     InventorySlot34.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
             }
 
@@ -143,19 +166,21 @@ public class PlayerController1 : MonoBehaviour
                     InventorySlotIsFilled1 = true;
                     ItemInInventorySlot1 = 2;
                     InventorySlot12.gameObject.SetActive(true);
-
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled2 == false)
                 {
                     InventorySlotIsFilled2 = true;
                     ItemInInventorySlot2 = 2;
                     InventorySlot22.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled3 == false)
                 {
                     InventorySlotIsFilled3 = true;
                     ItemInInventorySlot3 = 2;
                     InventorySlot32.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
             }
 
@@ -167,19 +192,21 @@ public class PlayerController1 : MonoBehaviour
                     InventorySlotIsFilled1 = true;
                     ItemInInventorySlot1 = 3;
                     InventorySlot13.gameObject.SetActive(true);
-
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled2 == false)
                 {
                     InventorySlotIsFilled2 = true;
                     ItemInInventorySlot2 = 3;
                     InventorySlot23.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled3 == false)
                 {
                     InventorySlotIsFilled3 = true;
                     ItemInInventorySlot3 = 3;
                     InventorySlot33.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
             }
 
@@ -191,19 +218,21 @@ public class PlayerController1 : MonoBehaviour
                     InventorySlotIsFilled1 = true;
                     ItemInInventorySlot1 = 5;
                     InventorySlot15.gameObject.SetActive(true);
-
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled2 == false)
                 {
                     InventorySlotIsFilled2 = true;
                     ItemInInventorySlot2 = 5;
                     InventorySlot25.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
                 else if (InventorySlotIsFilled3 == false)
                 {
                     InventorySlotIsFilled3 = true;
                     ItemInInventorySlot3 = 5;
                     InventorySlot35.gameObject.SetActive(true);
+                    PlayerAudio.Play();
                 }
             }
 
@@ -226,6 +255,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
+                CorrectObjectGiven.Play();
                 GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest();
             }
             else if (ItemInInventorySlot2 == GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().Questnumber)
@@ -234,6 +264,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
+                CorrectObjectGiven.Play();
                 GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest();
             }
             else if (ItemInInventorySlot3 == GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().Questnumber)
@@ -242,7 +273,8 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
-                GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest();
+                CorrectObjectGiven.Play();
+                GameObject.FindGameObjectWithTag("Delivery").GetComponent<IngrediëntQuest>().NewQuest(); 
             }
         }
 
@@ -255,6 +287,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
+                CorrectObjectGiven.Play();
                 GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().NewQuest();
             }
             else if (ItemInInventorySlot2 == GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().Questnumber)
@@ -263,6 +296,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
+                CorrectObjectGiven.Play();
                 GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().NewQuest();
             }
             else if (ItemInInventorySlot3 == GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().Questnumber)
@@ -271,6 +305,7 @@ public class PlayerController1 : MonoBehaviour
                 //add score
                 Score += 1;
                 scoreTotal.text = "Score: " + Score.ToString();
+                CorrectObjectGiven.Play();
                 GameObject.FindGameObjectWithTag("Delivery1").GetComponent<IngrediëntQuest>().NewQuest();
             }
         }
